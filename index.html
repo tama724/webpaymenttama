@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway - WOI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --rgb-speed: 3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container dengan Efek RGB */
+        .payment-card {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .payment-card::before {
+            content: "";
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            animation: rgb-anim var(--rgb-speed) linear infinite;
+            border-radius: 22px;
+        }
+
+        @keyframes rgb-anim {
+            0% { background-position: 0 0; }
+            50% { background-position: 300% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        h2 { margin-bottom: 5px; letter-spacing: 1px; }
+        p.subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px; }
+
+        /* Payment Item Style */
+        .method-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .method-container:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        .account-number {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .btn-dana { background: #1e90ff; color: white; }
+        .btn-gopay { background: #00aa13; color: white; }
+        .btn-wa { background: #25d366; color: white; margin-top: 20px; }
+
+        .btn:hover { opacity: 0.8; transform: scale(1.02); }
+
+        hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="payment-card">
+        <h2>PAYMENT GATEWAY</h2>
+        <p class="subtitle">Silahkan pilih metode pembayaran di bawah ini</p>
+
+        <div class="method-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" alt="DANA" class="logo-img">
+            <div class="info-text">A/N: <strong>WOI</strong></div>
+            <span class="account-number">09876427392</span>
+            <button class="btn btn-dana" onclick="copyText('09876427392')">
+                <i class="fas fa-copy"></i> Salin Nomor DANA
+            </button>
+        </div>
+
+        <div class="method-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GoPay" class="logo-img">
+            <div class="info-text">A/N: <strong>WOI</strong></div>
+            <span class="account-number">82639163619</span>
+            <button class="btn btn-gopay" onclick="copyText('82639163619')">
+                <i class="fas fa-copy"></i> Salin Nomor GoPay
+            </button>
+        </div>
+
+        <hr>
+
+        <a href="https://whatsapp.com/channel/0029Vb7Tstz7YSd0aay3Nq17" target="_blank" class="btn btn-wa">
+            <i class="fab fa-whatsapp"></i> Gabung Saluran WhatsApp
+        </a>
+    </div>
+
+    <script>
+        function copyText(number) {
+            navigator.clipboard.writeText(number);
+            alert("Nomor berhasil disalin: " + number);
+        }
+    </script>
+</body>
+</html>
